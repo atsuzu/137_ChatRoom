@@ -3,6 +3,13 @@ import sys
 from threading import Thread
 from time import sleep
 
+import webbrowser
+new = 2 # open in a new tab, if possible
+
+# open a public URL, in this case, the webbrowser docs
+url = "http://www.youtube.com/watch?v=xGgk1sYY3GI"
+
+
 #View
 def beep():
     print "\a"
@@ -40,6 +47,8 @@ def main_funct():
             v_continue = False
         elif mytxt == ":e":
             beep()
+            global webbrowser, new
+            webbrowser.open(url,new=new)
         elif mytxt == ":s":
             file_wr = open(topic2+".txt", 'w+')
             file_wr.write(stringSoFar)
@@ -58,6 +67,7 @@ thread.start()
 topic1 = raw_input("Please select your topic\n 1: Feedback\t2: Complaint\t3: Misc")
 topic2 = raw_input("What is the name of the topic? (20 character limit): ")
 host, port = 'students.ics.uci.edu', 7577
+#host, port = 'localhost', 7575
 client = Client(host, port)
 client.do_send({'join': "Me"})
 client.do_send("Me|TOPIC: ("+topic1 +") "+topic2 )
@@ -65,6 +75,7 @@ stringSoFar = ""
 #client.on_msg('yes')
 parseSubject()
 main_funct()
+
 
 
 

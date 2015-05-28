@@ -80,7 +80,7 @@ def parseUser(msg):
         return "%$$--#"
 #------MODEL------
 handlers = {}  # map client handler to user name
-port = 7575
+port = 7577
 server = MyListener(port, MyHandler)    
 
 
