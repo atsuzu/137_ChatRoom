@@ -17,6 +17,10 @@ def getInput():
     mytemptxt = raw_input("Me " + ' >> ')
     return mytemptxt
 def print_msg(msg):
+    if str(msg) == "ADMIN IS CLOSING":
+        client.do_close()
+        global v_continue
+        v_continue = False
     print msg
     global stringSoFar
     stringSoFar = stringSoFar + str(msg) + "\n"
@@ -28,6 +32,8 @@ class Client(Handler):
         print "Client Closing..."
 
     def on_msg(self, msg):
+        if str(msg) == "close":
+            client.do_close()
         print_msg(msg)
 def periodic_poll():
     while 1:
@@ -66,8 +72,8 @@ thread.daemon = True  # die when the main thread dies
 thread.start()
 topic1 = raw_input("Please select your topic\n 1: Feedback\t2: Complaint\t3: Misc")
 topic2 = raw_input("What is the name of the topic? (20 character limit): ")
-host, port = 'students.ics.uci.edu', 7577
-#host, port = 'localhost', 7575
+#host, port = 'students.ics.uci.edu', 7577
+host, port = 'localhost', 7577
 client = Client(host, port)
 client.do_send({'join': "Me"})
 client.do_send("Me|TOPIC: ("+topic1 +") "+topic2 )

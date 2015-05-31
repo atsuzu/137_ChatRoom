@@ -16,6 +16,7 @@ class MyHandler(Handler):
         global currentCustomer
         global customerList
         print "Calling Server Close"
+        
         if currentCustomer == self:
             print "NEXT CUSTOMER"
             if customerList.empty():
@@ -83,10 +84,11 @@ handlers = {}  # map client handler to user name
 port = 7577
 server = MyListener(port, MyHandler)    
 
-
-
-
 #------CONTROLLER------
-
-while 1:
-    poll(timeout=0.1) # in seconds
+try:
+    while 1:
+        poll(timeout=0.1)
+except KeyboardInterrupt:
+    print "CLOSING"
+    handlers["Admin"].do_send("ADMIN IS CLOSING")
+    currentCustomer.do_send("ADMIN IS CLOSING")

@@ -8,12 +8,16 @@ class Client(Handler):
     
     def on_close(self):
         pass
-    
+
     def on_msg(self, msg):
+        if str(msg) == "ADMIN IS CLOSING":
+            client.do_close()
+            global v_continue
+            v_continue = False
         print msg
 
         
-#host, port = 'localhost', 7575
+#host, port = 'localhost', 7577
 host, port = 'students.ics.uci.edu', 7577
 client = Client(host, port)
 client.do_send({'join': "Admin"})
@@ -38,3 +42,11 @@ while v_continue:
         v_continue = False
     else:
         client.do_send("Admin" + '|' + mytxt)
+
+#View
+def print_msg(msg):
+    if str(msg) == "ADMIN IS CLOSING":
+        client.do_close()
+        global v_continue
+        v_continue = False
+    print msg
