@@ -22,11 +22,11 @@ class MyHandler(Handler):
             if customerList.empty():
                 currentCustomer = None
             else:
-                currentCustomer = customerList.get()    #dequeue, set currentCustomer handler to next Customer in line.
+                currentCustomer = customerList.get()    
                 currentCustomer.do_send("Thank you for waiting, how may I help you?")
      
     def on_msg(self, msg):
-        global currentCustomer  #need this global here because python wants to declare local variables even thoug same name or something... ugh
+        global currentCustomer 
         global customerList
         tempParse = " "
         print "SERVER ON_MSG"    
