@@ -14,7 +14,7 @@ url = "http://www.youtube.com/watch?v=xGgk1sYY3GI"
 def beep():
     print "\a"
 def getInput():
-    mytemptxt = raw_input("Me " + ' >> ')
+    mytemptxt = raw_input()
     return mytemptxt
 def print_msg(msg):
     if str(msg) == "ADMIN IS CLOSING":
@@ -70,7 +70,7 @@ def main_funct():
 thread = Thread(target=periodic_poll)
 thread.daemon = True  # die when the main thread dies 
 thread.start()
-topic1 = raw_input("Please select your topic\n 1: Feedback\t2: Complaint\t3: Misc")
+topic1 = raw_input("Please select your topic\n 1: Feedback\t2: Complaint\t3: Misc\n")
 topic2 = raw_input("What is the name of the topic? (20 character limit): ")
 #host, port = 'students.ics.uci.edu', 7577
 host, port = 'localhost', 7577

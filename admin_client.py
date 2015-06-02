@@ -36,7 +36,7 @@ v_continue = True
 
 #Controller
 while v_continue:
-    mytxt = raw_input("Admin " + ' >> ')
+    mytxt = raw_input()
     if mytxt == ":q":
         client.do_close()
         v_continue = False
